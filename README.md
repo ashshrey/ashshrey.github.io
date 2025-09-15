@@ -1,1 +1,8 @@
 blog
+<br>
+Ideas:
+ - anime/manga: blame, ghost in the shell, serial experiments lain, 
+ - music: aphex twin, boards of canada, autechre, music programming/synths
+ - boards of canada "one very important thought"
+ - guides for vim, git
+ - games: inside, 
