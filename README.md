@@ -5,4 +5,7 @@ Ideas:
  - music: aphex twin, boards of canada, autechre, music programming/synths
  - boards of canada "one very important thought"
  - guides for vim, git
- - games: inside, 
+ - games: inside,
+ - movies: Koyaanisqatsi
+ - Update ConnectFour class
+ - Make small projects/code about class concepts and talk about it
