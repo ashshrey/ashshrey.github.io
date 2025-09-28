@@ -11,5 +11,4 @@ Ideas:
  - Make small projects/code about class concepts and talk about it
  - Make music programming/synths
  - advent of code, leetcode
- - Add dark mode/other things
  - OOP "Design" of a blog
