@@ -4,18 +4,18 @@ title:  "Understanding Inheritance and Polymorphism"
 date:   2025-09-28 18:46:52 -0400
 categories: blog
 ---
-Abstract class
-`public abstract class AbstractClass { }`
-Abstract class can have abstract methods for sub classes to implement. Abstract class doesn't implement an abstract method.
-`public abstract void methodName(int x);`
-`public abstract List<Integer> getList();`
+Abstract class<br>
+`public abstract class AbstractClass { }`<br>
+Abstract class can have abstract methods for sub classes to implement. Abstract class doesn't implement an abstract method.<br>
+`public abstract void methodName(int x);`<br>
+`public abstract List<Integer> getList();`<br>
 When sub class implements getList(), the return type `List<Integer>` can be `ArrayList<Integer>` because List is an Interface.
-
+<br>
 Sub class. Abstract classes can also be a sub class and extend a super class.
-`public class SubClass extends SuperClass { }`
+`public class SubClass extends SuperClass { }`<br>
 `public abstract class SubClass extends SuperClass { }`
-
-Implementing interface
+<br>
+Implementing interface<br>
 `public class ClassName implements InterfaceName { }`
 
 Sub class constructor MUST call super constructor
@@ -27,26 +27,26 @@ public SubClass() {
 ```
 
 `@Override` for methods of the SuperClass you want to overrride
-
-Interfaces ONLY have constants and methods without implementations.
-Methods are already public and static.
+<br>
+Interfaces ONLY have constants and methods without implementations.<br>
+Methods are already public and static.<br>
 `public interface Interface { }`
 
-equals() method
+equals() method<br>
 `(object instanceof Object) { }` Don't use because polymorphically the sub classes of Object (if Object is a super class) will be instances of Object
-Object is SuperClass. object is SubClass.
+<br>Object is SuperClass. object is SubClass.
 
 `SuperClass object = new SubClass();`
 
-CANNOT do this the other way around whether the class is concrete or abstract.
+CANNOT do this the other way around whether the class is concrete or abstract.<br>
 ~~`SubClass object = new SuperClass();`~~
 
-CANNOT instantiate SuperClass or Interface
-Can't do this `= new SuperClass();`
-Or this `= new Interface();`
-
-So how to do equals() method given an inheritance heirarchy?
-Don't compare `static` variables because they belong to the class NOT the instance.
+CANNOT instantiate SuperClass or Interface<br>
+Can't do this `= new SuperClass();`<br>
+Or this `= new Interface();`<br>
+<br>
+So how to do equals() method given an inheritance heirarchy?<br>
+Don't compare `static` variables because they belong to the class NOT the instance.<br>
 This is SubClass.equals() { }
 ```
 public boolean equals(Object o) {

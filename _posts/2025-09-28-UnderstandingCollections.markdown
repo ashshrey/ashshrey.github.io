@@ -4,11 +4,11 @@ title:  "Understanding Collections"
 date:   2025-09-28 18:46:52 -0400
 categories: blog
 ---
-if double then assertEquals(expected, actual, 0.001);
-`assertEquals(46.0, ex.calculateAverage(list), 0.001);`
+if double then `assertEquals(expected, actual, 0.001);`
+<br>`assertEquals(46.0, ex.calculateAverage(list), 0.001);`
 
 `ArrayList<Integer> list = new ArrayList<Integer>();`
-list.get(index) MUST return an object. ArrayList is an object that can only contain objects. 
+<br>`list.get(index)` MUST return an object. ArrayList is an object that can only contain objects. 
 
 infinite loop
 ```
@@ -27,7 +27,7 @@ int size = values.size();
 ```
 
 for ArrayLists we have to convert the primitive type to its wrapper class
-Integer.valueOf(some integer);
+<br>`Integer.valueOf(some integer);`
 ```
 		assertEquals(Integer.valueOf(100), list.get(0));
 		assertEquals(Integer.valueOf(50), list.get(1));
