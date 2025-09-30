@@ -7,17 +7,24 @@ categories: blog
 Abstract class<br>
 `public abstract class AbstractClass { }`<br>
 Abstract class can have abstract methods for sub classes to implement. Abstract class doesn't implement an abstract method.<br>
+Abstract methods CANNOT be static. Static belongs to the class itself. 
 `public abstract void methodName(int x);`<br>
 `public abstract List<Integer> getList();`<br>
 When sub class implements getList(), the return type `List<Integer>` can be `ArrayList<Integer>` because List is an Interface.
-<br>
-Sub class. Abstract classes can also be a sub class and extend a super class.
+<br><br>
+Sub class - Abstract classes can also be a sub class and extend a super class.
 `public class SubClass extends SuperClass { }`<br>
 `public abstract class SubClass extends SuperClass { }`
-<br>
+<br><br>
 Implementing interface<br>
 `public class ClassName implements InterfaceName { }`
-
+<br> Interface methods are automatically `public abstract`
+<br> For example `void print();` is treated as `public abstract void print();`<br>
+**Interfaces can only have constants and not implemented methods.** <br>
+**Note:** Since Java 8, Interfaces can implement methods using the `default` keyword. These methods are inherited by sub classes and can be overrided.
+Interfaces can also have `static` methods.
+<br>
+<br>
 Sub class constructor MUST call super constructor
 ```
 public SubClass() {

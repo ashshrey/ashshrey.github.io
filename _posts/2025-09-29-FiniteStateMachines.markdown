@@ -43,7 +43,8 @@ x += power * (ch - '0');
 power /= 10.0;
 ```
 
-**[State Pattern] (https://en.wikipedia.org/wiki/State_pattern#/media/File:State_Design_Pattern_UML_Class_Diagram.svg)** **for FSMs**
+**[State Pattern] (https://en.wikipedia.org/wiki/State_pattern#/media/File:State_Design_Pattern_UML_Class_Diagram.svg)** 
+**for FSMs**
 ``` java
 // instance fields. NOT constants
 private final State start = new Start();
