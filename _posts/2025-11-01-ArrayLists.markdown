@@ -4,6 +4,8 @@ title:  "Understanding ArrayLists"
 date:   2025-11-01 18:46:52 -0400
 categories: blog
 ---
+**Note: These notes are based on course material and lectures provides by North Carolina State University.**
+<br><br>
 ArrayLists are collections. They are data structures that store elements and have methods for abstracting the behavior to clients who use ArrayList. There are methods such as add, remove, contains, size, get. <br>
 ArrayLists extend AbstractList and implement List.<br>
 Constructing ArrayList <br>`ArrayList<Integer> list = new ArrayList<Integer>();`<br>

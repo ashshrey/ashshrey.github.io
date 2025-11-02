@@ -4,6 +4,8 @@ title:  "Understanding Inheritance and Polymorphism"
 date:   2025-09-28 18:46:52 -0400
 categories: blog
 ---
+**Note: These notes are based on course material and lectures provides by North Carolina State University.**
+<br><br>
 Abstract class<br>
 `public abstract class AbstractClass { }`<br>
 Abstract class can have abstract methods for sub classes to implement. Abstract class doesn't implement an abstract method.<br>

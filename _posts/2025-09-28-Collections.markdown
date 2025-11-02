@@ -4,6 +4,8 @@ title:  "Understanding Collections"
 date:   2025-09-28 18:46:52 -0400
 categories: blog
 ---
+**Note: These notes are based on course material and lectures provides by North Carolina State University.**
+<br><br>
 if double then `assertEquals(expected, actual, 0.001);`
 <br>`assertEquals(46.0, ex.calculateAverage(list), 0.001);`
 

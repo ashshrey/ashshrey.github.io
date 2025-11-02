@@ -4,6 +4,8 @@ title:  "Understanding Finite State Machines"
 date:   2025-09-29 18:46:52 -0400
 categories: blog
 ---
+**Note: These notes are based on course material and lectures provides by North Carolina State University.**
+<br><br>
 `final int START = 0;` 
 `int state = START;`
 `int i = 0;`
