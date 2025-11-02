@@ -54,6 +54,13 @@ Or this `= new Interface();`<br>
 <br>
 So how to do equals() method given an inheritance heirarchy?<br>
 Don't compare `static` variables because they belong to the class NOT the instance.<br>
+
+MUST always first extend the superclass and then the interface if extending a super class (which can be an Abstract class) and implementing an Interface <br>
+CANNOT extend more than one super class in Java <br>
+
+MUST do this <br>
+`public class SubClass extends SuperClass implements Interface`
+
 This is SubClass.equals() { }
 ```
 public boolean equals(Object o) {
