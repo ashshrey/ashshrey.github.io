@@ -94,8 +94,8 @@ public class LinkedList<E> {
                 current = current.next;
             }
             current.next = new ListNode(element, current.next);
-            size++;
         }
+        size++;
     }
 
     public E remove(int index) {

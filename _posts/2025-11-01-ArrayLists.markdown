@@ -17,9 +17,9 @@ Could have a `ArrayList<Object>` but then must cast to get the type you want. <b
 <br>
 CANNOT construct a Generic Type Object<br>
 ~~`E item = new E();`~~<br>
-You MUST do this (Remember SupressWarning):<br>
+You MUST do this (Remember SuppressWarnings):<br>
 ``` java
-@SupressWarning("unchecked")
+@SuppressWarnings("unchecked")
 public ArrayList() {
     list = (E[]) new Object[10];
     size = 0;
@@ -41,11 +41,11 @@ Generic Type is specific (can only be 1 type). Generic Wildcard refers to any Ob
 
 **ArrayList Implementation**
 ``` java
-public class ArrayList<E extends Comparable<E>> {
+public class ArrayList<E> {
     private E[] list;
     private int size;
 
-    @SupressWarning("unchecked")
+    @SuppressWarnings("unchecked")
     public ArrayList() {
         // new Object[INITIAL_SIZE]
         list = (E[]) new Object[10];
@@ -74,18 +74,18 @@ public class ArrayList<E extends Comparable<E>> {
     }
 
     private void growArray() {
-        E[] array = (E[]) new Object[size * 2];
+        E[] array = (E[]) new Object[list.length * 2];
         for (int i = 0; i < size; i++) {
             array[i] = list[i];
         }
         list = array;
     }
 
-    public E remove(int index, E element) {
+    public E remove(int index) {
         // get REMOVED
         E removed = list[index];
         // START at INDEX
-        for (int i = index; i < size; i++) {
+        for (int i = index; i < size - 1; i++) {
             list[i] = list[i + 1];
         }
         // DEREFRENCE last element
