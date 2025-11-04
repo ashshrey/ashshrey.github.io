@@ -11,7 +11,7 @@ DON'T do this:
 ~~`while (front != null)`~~ <br>
 
 Instead do this:<br>
-```
+``` java
 ListNode current = front;
 while (current != null) {
     // do something
@@ -24,7 +24,7 @@ LinkedLists are composed of chained ListNodes. <br>
 Inner classes like ListNode (ListNode is an inner class of LinkedList) can refer to the outer class as `LinkedList.this`<br>
 If outer class declares a type parameter (like generic type E), the inner class doesn't need to redeclare it <br>
 For example, <br>
-```
+``` java
 public class LinkedList<E> {
     private class ListNode {
 
@@ -41,7 +41,7 @@ current creates a different reference pointing to the same object that front
 `current.next = new ListNode(element, current.next);` and `current.next = current.next.next;`
 
 **Implementing LinkedList.addSorted(element)**
-```
+``` java
 public void addSorted(E element) {
     if (front == null || element.compareTo(front.data) < 0) {
         front = new ListNode(element, front);
@@ -55,30 +55,98 @@ public void addSorted(E element) {
     }
     size++;
 }
-
 ```
 
-**LinkedList Implementation**
-```
-public E remove(int idx) {
-    E removed = null;
-    if (idx == 0) { 
-        removed = front.data;
-        front = front.next;
-    } 
-    else {
-        ListNode current = front;
-        for (int i = 0; i < index - 1; i++) {
-            current = current.next;
+**Implementing indexOf(E element) for LinkedList**
+``` java
+private int indexOf(E element) {
+    ListNode current = front;
+    for (int i = 0; i < size; i++) {
+        if (current.data != null && current.data.equals(element)) {
+            return i;
         }
-        removed = current.next.data;
-        current.next = current.next.next;
+        current = current.next;
     }
-    size--;
-    return removed;
+    return -1;
 }
 
 
+```
+**LinkedList Implementation**
+``` java
+public class LinkedList<E> {
+    // has a LISTNODE and SIZE like ArrayList has an ARRAY and SIZE
+    private ListNode front;
+    private int size;
+
+    public LinkedList() {
+        front = null;
+        size = 0;
+    }
+
+    public void add(int index, E element) {
+        if (index == 0) {
+            front = new ListNode(element, front);
+        }
+        else {
+            ListNode current = front;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            current.next = new ListNode(element, current.next);
+            size++;
+        }
+    }
+
+    public E remove(int index) {
+        E removed = null;
+        if (index == 0) { 
+            removed = front.data;
+            front = front.next;
+        } 
+        else {
+            ListNode current = front;
+            for (int i = 0; i < index - 1; i++) {
+                current = current.next;
+            }
+            removed = current.next.data;
+            current.next = current.next.next;
+        }
+        size--;
+        return removed;
+    }
+
+    public E set(int index, E element) {
+        ListNode current = front;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        E oldElement = current.data;
+        current.data = element;
+        return oldElement;
+    }
+
+    public E get(int index) {
+        ListNode current = front;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        return current.data;
+    }
+
+    private class ListNode {
+        private E data;
+        private ListNode next;
+
+        public ListNode(E data) {
+            this(data, null);
+        }
+        public ListNode(E data, ListNode next) {
+            this.data = data;
+            this.next = next;
+        }
+    }
+}
 
 ```
 

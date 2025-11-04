@@ -18,7 +18,7 @@ Could have a `ArrayList<Object>` but then must cast to get the type you want. <b
 CANNOT construct a Generic Type Object<br>
 ~~`E item = new E();`~~<br>
 You MUST do this (Remember SupressWarning):<br>
-```
+``` java
 @SupressWarning("unchecked")
 public ArrayList() {
     list = (E[]) new Object[10];
@@ -40,5 +40,77 @@ Generic Type is specific (can only be 1 type). Generic Wildcard refers to any Ob
 <br>
 
 **ArrayList Implementation**
+``` java
+public class ArrayList<E extends Comparable<E>> {
+    private E[] list;
+    private int size;
 
+    @SupressWarning("unchecked")
+    public ArrayList() {
+        // new Object[INITIAL_SIZE]
+        list = (E[]) new Object[10];
+        size = 0;
+    }
+    public boolean add(E element) {
+        add(size, element);
+        return true;
+    }
+    public void add(int index, E element) {
+
+        //IMPORTANT
+        // REMEMBER to growArray()
+        if (list.length == size) {
+            growArray();
+        }
+
+        // you are DECREMENTING
+        // i > index
+        for (int i = size; i > index; i--) {
+            list[i] = list[i - 1];
+        }
+        list[index] = element;
+        // INCREMENT size
+        size++;
+    }
+
+    private void growArray() {
+        E[] array = (E[]) new Object[size * 2];
+        for (int i = 0; i < size; i++) {
+            array[i] = list[i];
+        }
+        list = array;
+    }
+
+    public E remove(int index, E element) {
+        // get REMOVED
+        E removed = list[index];
+        // START at INDEX
+        for (int i = index; i < size; i++) {
+            list[i] = list[i + 1];
+        }
+        // DEREFRENCE last element
+        list[size - 1] = null;
+        // DECREMENT size
+        size--;
+        return removed; 
+    }
+
+    public E set(int index, E element) {
+        E oldElement = list[index];
+        list[index] = element;
+        return oldElement;
+    }
+
+    public E get(int index) {
+        return list[index];
+    }
+
+    public int size() {
+        return size;
+    }
+
+
+} 
+
+```
 
