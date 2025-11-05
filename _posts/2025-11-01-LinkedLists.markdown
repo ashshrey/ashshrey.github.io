@@ -72,28 +72,41 @@ private int indexOf(E element) {
 
 
 ```
-**LinkedList Implementation**
+**LinkedList Implementation (Singly Linked List)**
 ``` java
 public class LinkedList<E> {
     // has a LISTNODE and SIZE like ArrayList has an ARRAY and SIZE
     private ListNode front;
+    private ListNode back;
     private int size;
 
     public LinkedList() {
         front = null;
+        back = null;
         size = 0;
     }
 
     public void add(int index, E element) {
-        if (index == 0) {
-            front = new ListNode(element, front);
+        ListNode node = new ListNode(element);
+        if (size == 0) {
+            front = node;
+            back = front;
+        }
+        else if (index == 0) {
+            node.next = front;
+            front = node;
+        }
+        else if (index == size) {
+            back.next = node;
+            back = node;
         }
         else {
             ListNode current = front;
             for (int i = 0; i < index - 1; i++) {
                 current = current.next;
             }
-            current.next = new ListNode(element, current.next);
+            node.next = current.next;
+            current.next = node;
         }
         size++;
     }
@@ -103,7 +116,10 @@ public class LinkedList<E> {
         if (index == 0) { 
             removed = front.data;
             front = front.next;
-        } 
+            if (size == 1) {
+                back = null;
+            }
+        }
         else {
             ListNode current = front;
             for (int i = 0; i < index - 1; i++) {
@@ -111,6 +127,9 @@ public class LinkedList<E> {
             }
             removed = current.next.data;
             current.next = current.next.next;
+            if (index == size - 1) {
+                back = current;
+            }
         }
         size--;
         return removed;
