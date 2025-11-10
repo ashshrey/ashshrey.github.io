@@ -72,10 +72,9 @@ private int indexOf(E element) {
 
 
 ```
-**LinkedList Implementation (Singly Linked List)**
+**LinkedList Implementation**
 ``` java
 public class LinkedList<E> {
-    // has a LISTNODE and SIZE like ArrayList has an ARRAY and SIZE
     private ListNode front;
     private ListNode back;
     private int size;
@@ -88,46 +87,56 @@ public class LinkedList<E> {
 
     public void add(int index, E element) {
         ListNode node = new ListNode(element);
-        if (size == 0) {
+        if (size == 0) { //add to empty list
             front = node;
             back = front;
         }
-        else if (index == 0) {
+        else if (index == 0) { //add to front
             node.next = front;
+            front.prev = node;
             front = node;
         }
-        else if (index == size) {
+        else if (index == size) { //add to back
             back.next = node;
+            node.prev = back;
             back = node;
         }
-        else {
+        else { //add to middle
             ListNode current = front;
             for (int i = 0; i < index - 1; i++) {
                 current = current.next;
             }
             node.next = current.next;
+            current.next.prev = node;
             current.next = node;
+            node.prev = current;
         }
         size++;
     }
 
     public E remove(int index) {
         E removed = null;
-        if (index == 0) { 
+        if (index == 0) { //remove from front
             removed = front.data;
             front = front.next;
-            if (size == 1) {
+            if (front != null) {
+                front.prev = null;
+            }
+            else {
                 back = null;
             }
         }
-        else {
+        else { //remove from middle or back
             ListNode current = front;
             for (int i = 0; i < index - 1; i++) {
                 current = current.next;
             }
             removed = current.next.data;
             current.next = current.next.next;
-            if (index == size - 1) {
+            if (current.next != null) { 
+                current.next.prev = current; 
+            } 
+            else { 
                 back = current;
             }
         }
@@ -156,13 +165,15 @@ public class LinkedList<E> {
     private class ListNode {
         private E data;
         private ListNode next;
+        private ListNode prev;
 
         public ListNode(E data) {
-            this(data, null);
+            this(data, null, null);
         }
-        public ListNode(E data, ListNode next) {
+        public ListNode(E data, ListNode next, ListNode prev) {
             this.data = data;
             this.next = next;
+            this.prev = prev;
         }
     }
 }
