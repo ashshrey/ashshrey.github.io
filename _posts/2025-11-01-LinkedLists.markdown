@@ -70,8 +70,18 @@ private int indexOf(E element) {
     return -1;
 }
 
-
 ```
+
+If it is a singly linked list, you must do this for adding and removing: `for (int i = 0; i < index - 1; i++) {`
+REMEMBER: EMPTY list, add/remove FRONT, add/remove BACK, ONE element in list.
+``` java
+size == 0
+size == 1
+index == 0
+index == size - 1 //REMOVE
+index == size //ADD
+```
+
 **LinkedList Implementation**
 ``` java
 public class LinkedList<E> {
