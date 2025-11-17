@@ -25,8 +25,8 @@ public int pow(int x, int y) {
 ``` java
 public String binary(int x) {
     String binary = "";
-    if (n < 2) { // 0 or 1
-        return "" + n;
+    if (x < 2) { // 0 or 1
+        return "" + x;
     }
     else {
         return binary(x / 2) + binary(x % 2);
@@ -83,7 +83,7 @@ private class ListNode {
             return true;
         }
         else {
-            next.add(e);
+            return next.add(e);
         }
     }
 

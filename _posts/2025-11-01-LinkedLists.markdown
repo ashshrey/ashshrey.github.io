@@ -62,7 +62,7 @@ public void addSorted(E element) {
 private int indexOf(E element) {
     ListNode current = front;
     for (int i = 0; i < size; i++) {
-        if (current.data != null && current.data.equals(element)) {
+        if ((element == null && current.data == null) || (current.data != null && current.data.equals(element))) {
             return i;
         }
         current = current.next;
@@ -185,6 +185,111 @@ public class LinkedList<E> {
             this.next = next;
             this.prev = prev;
         }
+    }
+}
+
+```
+
+
+**Implementing LinkedListIterator**
+
+``` java
+
+// Has SENTINEL NODES (both a front and a back sentinel)
+public LinkedList() {
+    front = new ListNode(null);
+    back = new ListNode(null);
+    front.next = back;
+    back.prev = front;
+    size = 0;
+}
+
+private class LinkedListIterator implements ListIterator<E> {
+
+    private ListNode previous;
+    private ListNode next;
+    private int previousIndex;
+    private int nextIndex;
+    private ListNode lastRetrieved;
+
+    public LinkedListIterator(int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        ListNode current = front;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        previous = current;
+        next = current.next;
+        previousIndex = index - 1;
+        nextIndex = index;
+        lastRetrieved = null;
+    }
+    public boolean hasNext() {
+        //is next.data because there is a back sentinel node
+		return next.data != null;
+	}
+    public boolean hasPrevious() {
+        //is previous.data because there is a front sentinel node
+        return previous.data != null;
+    }
+    public E next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+        lastRetrieved = next;
+        next = next.next;
+        previous = previous.next;
+        nextIndex++;
+        previousIndex++; 
+        return lastRetrieved.data;
+    }
+    public E previous() {
+        if (!hasPrevious()) {
+            throw new NoSuchElementException();
+        }
+        lastRetrieved = previous;
+        next = next.prev;
+        previous = previous.prev;
+        nextIndex--;
+        previousIndex--; 
+        return lastRetrieved.data;
+    }
+    public void set(E e) {
+        if (lastRetrieved == null) {
+            throw new IllegalStateException();
+        }
+        if (e == null) {
+            throw new NullPointerException();
+        }
+        lastRetrieved.data = e;
+    }
+
+    public void remove() {
+        if (lastRetrieved == null) {
+            throw new IllegalStateException();
+        }
+        lastRetrieved.prev.next = lastRetrieved.next;
+        lastRetrieved.next.prev = lastRetrieved.prev;
+        previousIndex--;
+        nextIndex--;
+        previous = lastRetrieved.prev;
+        size--;
+        lastRetrieved = null;
+    }
+    public void add(E e) {
+        if (e == null) {
+            throw new NullPointerException();
+        }
+        ListNode node = new ListNode(e, previous, next);
+        previous.next = node;
+        next.prev = node;
+        previous = node;
+        previousIndex++;
+        nextIndex++;
+        size++;
+        lastRetrieved = null;
     }
 }
 
