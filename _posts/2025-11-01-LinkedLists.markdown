@@ -72,6 +72,28 @@ private int indexOf(E element) {
 
 ```
 
+**Implementing moveElementToBack()**
+``` java
+public void moveElementToBack(int index) {
+    int move;
+    if (index == 0) {
+        move = front.data;
+        front = front.next;
+    }
+    else {
+        ListNode current = front;
+        for (int i = 0; i < index - 1; i++) {
+            current = current.next;
+        }
+        move = current.next.data;
+        current.next = current.next.next;
+    }
+    back.next = new ListNode(move);
+    back = back.next;
+}
+
+```
+
 If it is a singly linked list, you must do this for adding and removing: `for (int i = 0; i < index - 1; i++) {`
 REMEMBER: EMPTY list, add/remove FRONT, add/remove BACK, ONE element in list.
 ``` java

@@ -153,5 +153,170 @@ public int remove(int index) {
 }
 ```
 
+**Recursion in LinkedList**
+``` java 
+public class LinkedList<E> {
+    private ListNode front;
+    private int size;
+    private class ListNode {
+        private E data;
+        private ListNode next;
+        public ListNode(E data, ListNode next) {
+            this.data = data;
+            this.next = next;
+        }
+        public ListNode(E data) {
+            this(data, null);
+        }
 
+        private boolean contains(E element) {
+            if (next == null) {
+                return false;
+            }
+            else if (next.data.equals(element)) {
+                return true;
+            }
+            else {
+                return next.contains(element);
+            }
+        }
+        private boolean add(E element) {
+            if (next == null) {
+                next = new ListNode(element);
+                size++;
+                return true;
+            }
+            else {
+                return next.add(element);
+            }
+        }
+        private void add(int index, E element) {
+            if (index == 0) {
+                next = new ListNode(element, next);
+            }
+            else {
+                next.add(index - 1, element);
+            }
+        }
+        private E get(int index) {
+            if (index == 0) {
+                return next.data;
+            }
+            else {
+                return next.get(index - 1);
+            }
+        }
+        private boolean remove(E element) {
+            if (next == null) {
+                return false;
+            }
+            else if (next.data.equals(element)) {
+                next = next.next;
+                size--;
+                return true;
+            }
+            else {
+                return next.remove(element);
+            }
+        }
+        private E remove(int index) {
+            E removed;
+            if (index == 0) {
+                removed = next.data;
+                next = next.next;
+            }
+            else {
+                removed = next.remove(index - 1);
+            }
+            return removed;
+        }
+        private E set(int index, E element) {
+            E oldElement;
+            if (index == 0) {
+                oldElement = next.data;
+                next.data = element;
+            }
+            else {
+                oldElement = next.set(index - 1, element);
+            }
+            return oldElement;
+        }
+    }
 
+    public boolean contains(E element) {
+        if (front == null) {
+            return false;
+        }
+        else if (front.data.equals(element)) {
+            return true;
+        }
+        else {
+            return front.contains(element);
+        }
+    }
+    public boolean add(E element) {
+        if (front == null) {
+            front = new ListNode(element);
+            size++;
+            return true;
+        }
+        else {
+            return front.add(element);
+        }
+    }
+    public void add(int index, E element) {
+        if (index == 0) {
+            front = new ListNode(element, front);
+        }
+        else {
+            front.add(index - 1, element);
+        }
+        size++;
+    }
+    public E get(int index) {
+        if (index == 0) {
+            return front.data;
+        }
+        else {
+            return front.get(index - 1);
+        }
+    }
+    public boolean remove(E element) {
+        if (front == null) {
+            return false;
+        }
+        else if (front.data.equals(element)) {
+            front = front.next;
+            size--;
+            return true;
+        }
+        else {
+            return front.remove(element);
+        }
+    } 
+    public E remove(int index) {
+        E removed;
+        if (index == 0) {
+            removed = front.data;
+            front = front.next;
+        }
+        else {
+            removed = front.remove(index - 1);
+        }
+        size--;
+        return removed;
+    }
+    public E set(int index, E element) {
+        E oldElement;
+        if (index == 0) {
+            oldElement = front.data;
+            front.data = element;
+        }
+        else {
+            oldElement = front.set(index - 1, element);
+        }
+        return oldElement;
+    }
+}
+
+```
