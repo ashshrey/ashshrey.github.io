@@ -238,31 +238,29 @@ private class LinkedListIterator implements ListIterator<E> {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
-        ListNode current = front;
+        previous = front; // equals sentinel node
+        next = front.next;
         for (int i = 0; i < index; i++) {
-            current = current.next;
+            previous = next;
+            next = next.next;
         }
-        previous = current;
-        next = current.next;
         previousIndex = index - 1;
         nextIndex = index;
         lastRetrieved = null;
     }
     public boolean hasNext() {
-        //is next.data because there is a back sentinel node
-		return next.data != null;
+		return next != back;
 	}
     public boolean hasPrevious() {
-        //is previous.data because there is a front sentinel node
-        return previous.data != null;
+        return previous != front;
     }
     public E next() {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
         lastRetrieved = next;
-        next = next.next;
-        previous = previous.next;
+        next = lastRetrieved.next;
+        previous = lastRetrieved;
         nextIndex++;
         previousIndex++; 
         return lastRetrieved.data;
@@ -272,8 +270,8 @@ private class LinkedListIterator implements ListIterator<E> {
             throw new NoSuchElementException();
         }
         lastRetrieved = previous;
-        next = next.prev;
-        previous = previous.prev;
+        next = lastRetrieved;
+        previous = lastRetrieved.prev;
         nextIndex--;
         previousIndex--; 
         return lastRetrieved.data;
@@ -294,9 +292,15 @@ private class LinkedListIterator implements ListIterator<E> {
         }
         lastRetrieved.prev.next = lastRetrieved.next;
         lastRetrieved.next.prev = lastRetrieved.prev;
-        previousIndex--;
-        nextIndex--;
-        previous = lastRetrieved.prev;
+        if (lastRetrieved == previous) { // next() was called
+            previous = lastRetrieved.prev;
+            previousIndex--;
+            nextIndex--;
+        }
+        else { // previous() was called
+            // removes node so should decrement indices but previous() already decrements indices
+            next = lastRetrieved.next; 
+        }
         size--;
         lastRetrieved = null;
     }
@@ -304,10 +308,12 @@ private class LinkedListIterator implements ListIterator<E> {
         if (e == null) {
             throw new NullPointerException();
         }
-        ListNode node = new ListNode(e, previous, next);
+        ListNode node = new ListNode(e);
+        node.prev = previous;
+        node.next = next;
         previous.next = node;
         next.prev = node;
-        previous = node;
+        previous = node; // next would not change
         previousIndex++;
         nextIndex++;
         size++;
