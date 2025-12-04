@@ -247,9 +247,6 @@ public class LinkedList<E> {
         if (front == null) {
             return false;
         }
-        else if (front.data.equals(element)) {
-            return true;
-        }
         else {
             return front.contains(element);
         }
