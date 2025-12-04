@@ -170,11 +170,11 @@ public class LinkedList<E> {
         }
 
         private boolean contains(E element) {
-            if (next == null) {
-                return false;
-            }
-            else if (next.data.equals(element)) {
+            if (data.equals(element)) {
                 return true;
+            }
+            else if (next == null) {
+                return false;
             }
             else {
                 return next.contains(element);
