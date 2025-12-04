@@ -148,25 +148,20 @@ public class LinkedList<E> {
 
     public E remove(int index) {
         E removed = null;
-        if (index == 0) { //remove from front
+        if (size == 1) { //only element
+            removed = front.data;
+            front = null;
+            back = front;
+        }
+        else if (index == 0) { //remove from front
             removed = front.data;
             front = front.next;
-            if (front != null) {
-                front.prev = null;
-            }
-            else {
-                back = null;
-            }
+            front.prev = null;
         }
         else if (index == size - 1) { //remove from back
             removed = back.data;
             back = back.prev;
-            if (back != null) {
-                back.next = null;
-            }
-            else {
-                front = null;
-            }
+            back.next = null;
         }
         else { //remove from middle
             ListNode current = front;
