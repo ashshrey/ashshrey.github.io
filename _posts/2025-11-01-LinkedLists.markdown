@@ -158,7 +158,7 @@ public class LinkedList<E> {
                 back = null;
             }
         }
-        else if (index == size - 1) {
+        else if (index == size - 1) { //remove from back
             removed = back.data;
             back = back.prev;
             if (back != null) {
@@ -168,7 +168,7 @@ public class LinkedList<E> {
                 front = null;
             }
         }
-        else { //remove from middle or back
+        else { //remove from middle
             ListNode current = front;
             for (int i = 0; i < index - 1; i++) {
                 current = current.next;
