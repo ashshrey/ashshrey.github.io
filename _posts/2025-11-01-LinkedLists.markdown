@@ -4,7 +4,6 @@ title:  "Understanding LinkedLists"
 date:   2025-11-01 18:46:52 -0400
 categories: blog
 ---
-**Note: These notes are based on course material and lectures provided by North Carolina State University.**
 <br><br>
 For traversing through list of ListNodes, do not try to access or use the reference that represents the list itself.<br>
 DON'T do this:

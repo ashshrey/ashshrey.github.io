@@ -4,7 +4,6 @@ title:  "Understanding Complexity"
 date:   2025-11-02 18:46:52 -0400
 categories: blog
 ---
-**Note: These notes are based on course material and lectures provided by North Carolina State University.**
 <br><br>
 Runtime Efficiency: a measure of the use of computing resources. <br>
 The runtime of a loop takes N times the number of statments in the loop. <br>

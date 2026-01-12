@@ -4,7 +4,6 @@ title:  "Understanding Searching and Sorting"
 date:   2025-12-03 18:46:52 -0400
 categories: blog
 ---
-**Note: These notes are based on course material and lectures provided by North Carolina State University.**
 <br><br>
 
 **Searching**

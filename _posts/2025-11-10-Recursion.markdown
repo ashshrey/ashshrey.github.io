@@ -4,7 +4,6 @@ title:  "Understanding Recursion"
 date:   2025-11-10 18:46:52 -0400
 categories: blog
 ---
-**Note: These notes are based on course material and lectures provided by North Carolina State University.**
 <br><br>
 
 ``` java

@@ -4,7 +4,6 @@ title:  "Understanding Stacks and Queues"
 date:   2025-11-02 18:46:52 -0400
 categories: blog
 ---
-**Note: These notes are based on course material and lectures provided by North Carolina State University.**
 <br><br>
 Stacks store items as last in, first out. Queues store items as first in, first out. <br>
 For Stacks, objects are removed in reverse order from how they are added. For Queues, objects are removed in the same order as how they are added. <br>
